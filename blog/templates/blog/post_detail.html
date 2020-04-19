@@ -8,22 +8,17 @@
 		<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
-    <body>
-        <div class = "page-header">
-            <h1><a href="/">Django Blog</a></h1>
-        </div>
-		
+    <body>		
 		{% block content %}
-			{% for post in posts %}
-				<div class="post">
-					<h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-					<p>{{ post.text|linebreaksbr }}</p>
+			<div class="post">
+				<h2>{{ post.title }}</h2>
+				<p>{{ post.text|linebreaksbr }}</p>
+				{% if post.published_date %}
 					<div class="date">
-						<p>{{ post.published_date }}</p>
+						{{ post.published_date }}
 					</div>
-				</div>
-			{% endfor %}
+				{% endif %}				
+			</div>
 		{% endblock %}
-		
     </body>
 </html>
